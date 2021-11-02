@@ -8,8 +8,8 @@ jobs:
       - name: Find Issue
         id: findIssue
         run: |
-          gh issue list | wc -l
-          gh issue list
+          echo 'COUNT='`gh issue list | grep "My issue" |  wc -l` >> $GITHUB_ENV
+          gh issue list | grep "My issue"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - if: steps.findIssue.outputs.COUNT == 0
