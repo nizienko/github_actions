@@ -9,8 +9,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo `gh issue list --mention nizienko | grep \"My commits\" | wc -l`
-          echo `gh issue list --mention nizienko | grep \"My commits\"`
+          gh issue list | wc -l
+          gh issue list
 #      - if: steps.findIssue.outputs.COUNT == 0
 #        run: |
 #          gh issue create --title "My commits" --body "@nizienko here is my commits"
