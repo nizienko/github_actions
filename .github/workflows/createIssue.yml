@@ -10,7 +10,7 @@ jobs:
         run: |
           export COUNT=`gh issue list | grep "My issue" | wc -l`
           echo "::set-output name=COUNT::$COUNT"
-          export ISSUE=`gh issue list | grep "My issue" | awk "{print $2}" | head -n 1`
+          export ISSUE=`gh issue list | grep "My issue" | awk '{print $2}' | head -n 1`
           echo "::set-output name=ISSUE::$ISSUE"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
