@@ -1,5 +1,5 @@
 name: My commits workflow
-on: [push]
+on: [ push ]
 jobs:
   cr_issue:
     runs-on: ubuntu-latest
