@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Find Issue
         id: findIssue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "::set-output name=COUNT::`gh issue list --mention nizienko | grep \"My commits\" | wc -l`"
           echo "::set-output name=ISSUE::`gh issue list --mention nizienko | grep \"My commits\"`"
