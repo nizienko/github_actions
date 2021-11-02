@@ -8,7 +8,7 @@ jobs:
       - name: Find Issue
         id: findIssue
         run: |
-          echo "::set-env name=COUNT::`gh issue list | grep "My issue" |  wc -l`"
+          echo "::set-output name=COUNT::`gh issue list | grep "My issue" |  wc -l`"
           gh issue list | grep "My issue"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
