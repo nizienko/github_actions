@@ -6,11 +6,11 @@ jobs:
     steps:
       - name: Find Issue
         id: findIssue
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue list | wc -l
           gh issue list
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - if: steps.findIssue.outputs.COUNT == 0
 #        run: |
 #          gh issue create --title "My commits" --body "@nizienko here is my commits"
