@@ -8,7 +8,7 @@ jobs:
       - name: Find Issue
         id: findIssue
         run: |
-          export COUNT = `gh issue list | grep "My issue" | wc -l`
+          export COUNT `gh issue list | grep "My issue" | wc -l`
           echo "::set-output name=COUNT::$COUNT`"
           gh issue list | grep "My issue"
         env:
