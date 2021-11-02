@@ -1,0 +1,15 @@
+name: My commits workflow
+on: [push]
+jobs:
+  cr_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - if: !(gh issue list --mention nizienko | grep \"My commits\")
+        run: |
+          gh issue create --title "My commits" --body "@nizienko here is my commits"
+      - if: gh issue list --mention nizienko | grep \"My commits\"
+        run: |
+          gh issue comment ${{ISSUE}} --body "yet another push"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: gh issue list --mention nizienko | grep \"My commits\"
