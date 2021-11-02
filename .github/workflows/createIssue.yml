@@ -8,12 +8,12 @@ jobs:
         id: findIssue
         run: |
           echo "::set-output name=COUNT::`gh issue list --mention nizienko | grep \"My commits\" | wc -l`"
+          echo "::set-output name=ISSUE::`gh issue list --mention nizienko | grep \"My commits\"`"
       - if: steps.findIssue.outputs.COUNT == 0
         run: |
           gh issue create --title "My commits" --body "@nizienko here is my commits"
       - if: steps.findIssue.outputs.COUNT > 0
         run: |
-          gh issue comment ${{ISSUE}} --body "yet another push"
+          gh issue comment ${{steps.findIssue.outputs.ISSUE}} --body "yet another push"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: gh issue list --mention nizienko | grep \"My commits\"
