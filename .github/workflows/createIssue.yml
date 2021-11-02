@@ -11,12 +11,12 @@ jobs:
           export COUNT=`gh issue list | grep "My issue" | wc -l`
           echo "::set-output name=COUNT::$COUNT"
           export ISSUE=`gh issue list | grep "My issue"`
-          echo "::set-output name=ISSUE::ISSUE"
+          echo "::set-output name=ISSUE::$ISSUE"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: steps.findIssue.outputs.COUNT == 0
         run: |
-          gh issue create --title "My commits" --body "@nizienko here is my commits"
+          gh issue create --title "My issue" --body "@nizienko here is my commits"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: steps.findIssue.outputs.COUNT > 0
