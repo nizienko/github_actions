@@ -4,10 +4,14 @@ jobs:
   cr_issue:
     runs-on: ubuntu-latest
     steps:
-      - if: !(gh issue list --mention nizienko | grep \"My commits\")
+      - name: Find Issue
+        id: findIssue
+        run: |
+          echo "::set-output name=COUNT::`gh issue list --mention nizienko | grep \"My commits\" | wc -l`"
+      - if: steps.findIssue.outputs.COUNT == 0
         run: |
           gh issue create --title "My commits" --body "@nizienko here is my commits"
-      - if: gh issue list --mention nizienko | grep \"My commits\"
+      - if: steps.findIssue.outputs.COUNT > 0
         run: |
           gh issue comment ${{ISSUE}} --body "yet another push"
         env:
